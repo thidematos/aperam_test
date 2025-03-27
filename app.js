@@ -46,9 +46,9 @@ if (process.env.NODE_ENV === 'production') app.use('/api', limiter);
 app.use('/api/v1/talhao', talhaoRouter);
 
 //Routing react-route-dom
-app.all('/*', (req, res, next) => {
+/* app.all('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
-});
+}); */
 
 app.all('/api/v1/*', (req, res, next) => {
   next(new AppError(`Could not find ${req.originalUrl} in this server`, 404));

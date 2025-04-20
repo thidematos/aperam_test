@@ -1,3 +1,4 @@
+const sharp = require('sharp');
 const catchAsync = require('../utils/catchAsync');
 
 exports.resizeImages = catchAsync(async (req, res, next) => {

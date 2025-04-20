@@ -7,8 +7,8 @@ const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
-const dummyRouter = require('./routers/dummyRouter');
 const talhaoRouter = require('./routers/talhaoRouter');
+const formSubmitRouter = require('./routers/formSubmitRouter');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -44,6 +44,8 @@ app.use((req, res, next) => {
 if (process.env.NODE_ENV === 'production') app.use('/api', limiter);
 
 app.use('/api/v1/talhao', talhaoRouter);
+
+app.use('/api/v1/form-answer', formSubmitRouter);
 
 //Routing react-route-dom
 /* app.all('/*', (req, res, next) => {

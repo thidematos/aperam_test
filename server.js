@@ -7,13 +7,24 @@ process.on('uncaughtException', (err) => {
 const app = require('./app');
 const dotenv = require('dotenv');
 const connectionDB = require('./utils/connectDB');
+const schedule = require('node-schedule');
+const { initializeApp, applicationDefault } = require('firebase-admin/app');
+const cronVerifyEmails = require('./utils/cronVerifyEmails');
 
 dotenv.config({ path: `${__dirname}/config.env` });
 
+process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
 const server = app.listen(process.env.PORT || 3000, async () => {
   console.log('Server started!');
-  //await connectionDB();
+
+  initializeApp({
+    credential: applicationDefault(),
+  });
+  await connectionDB();
 });
+
+//const job = schedule.scheduleJob('* * * * *', cronVerifyEmails.sendEmails);
 
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);

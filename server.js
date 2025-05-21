@@ -24,7 +24,10 @@ const server = app.listen(process.env.PORT || 3000, async () => {
   await connectionDB();
 });
 
-//const job = schedule.scheduleJob('* * * * *', cronVerifyEmails.sendEmails);
+/* const job = schedule.scheduleJob(
+  '* * * * *',
+  cronVerifyEmails.sendEmails.bind(cronVerifyEmails)
+); */
 
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);

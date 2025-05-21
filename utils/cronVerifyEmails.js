@@ -7,6 +7,8 @@ class cronVerifyEmails {
   constructor() {}
 
   async sendEmails() {
+    console.log('Oiii');
+
     const emails = await this._findEmails();
     const filteredEmails = this._verifiesIsToday(emails);
     await this._transportEmails(filteredEmails);
